@@ -20,9 +20,11 @@
 #include "../Interfaces/Graphable.h"
 
 #include "../Physiology/DynamicSynapse.h"
-#include "../EventManager/EventManager.h"
 
 class EDSynapse;
+#include "../EventManager/EventManager.h"
+
+//class EDSynapse;
 #include "../Staters/SynapseStater.h"
 #include "../Tracers/SynapseTracer.h"
 #include "../Graphers/SynapseGrapher.h"
@@ -35,15 +37,15 @@ class EDSynapse: public DynamicSynapse, public Statable, public Tracable, public
 {
 public:
 	EDSynapse();
-	
+
 	virtual ~EDSynapse();
 	virtual void initSynapse();
 
 	void reInitSynapse();
 	void reInitEDSynapse();
-	
+
 	EDSynapse(Neuron* _pNewPreNeuron, Neuron* _pNewPostNeuron);
-	
+
 	static EventManager theEventManager;
 
 #ifdef _TOPOLOGICAL_DELAY_MODE
