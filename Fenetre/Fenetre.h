@@ -16,6 +16,8 @@
 #include <map>
 // sprinf (NEW)
 #include <cstdio>
+#include "strdub.h"
+
 using namespace std;
 
 // Local Includes
