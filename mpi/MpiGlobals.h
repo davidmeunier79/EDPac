@@ -3,9 +3,10 @@
 #ifndef _MPI_GLOBALS_H
 #define _MPI_GLOBALS_H
 
-//#include <mpi++.h>
+// NEW
+#include <mpi++.h>
 // Special lam 7.0
-#include <mpi.h>
+//#include <mpi.h>
 #include <iostream>
 #include <string>
 using namespace std;
@@ -39,7 +40,7 @@ public :
 
 	void synchronize();
 	void abort();
-	
+
 	// fonction permetant d'acceder au singleton
 	static MpiGlobals & getInstance();
 
