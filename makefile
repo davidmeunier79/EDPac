@@ -3,7 +3,7 @@ DEBUGGER=0
 ifeq ($(DEBUGGER),1)
 	GCC = g++ -g -c
 else
-	GCC = g++ -c -lX11
+	GCC = g++ -c -lX11 -std=gnu++0x
 endif
 
 LD = g++  -lX11
@@ -17,7 +17,7 @@ MPIRUN = mpirun -f -c
 GA = GeneticAlgorithm/
 
 ## Repertoires Pacman
-MPI = MPI/
+MPI = mpi/
 FEN = Fenetre/
 OBJ = Objets/
 ZOO = Zoo/
