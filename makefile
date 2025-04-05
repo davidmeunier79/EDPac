@@ -3,10 +3,10 @@ DEBUGGER=0
 ifeq ($(DEBUGGER),1)
 	GCC = g++ -g -c
 else
-	GCC = g++ -c
+	GCC = g++ -c -lX11 -std=gnu11
 endif
 
-LD = g++
+LD = g++  -lX11
 
 MPICC = mpic++ -lm -L/usr/X11R6/lib -lX11 -lXpm
 MPIRUN = mpirun -f -c
@@ -67,12 +67,12 @@ TestEvoPacman: O_OBJ O_INT O_HAN O_FH O_FEN O_DGR O_MT O_TOPO O_PHY O_EDMAN O_MP
 
 TestBestPopulation: O_OBJ O_INT O_HAN O_FH O_FEN O_DGR O_MT O_TOPO O_PHY O_EDMAN O_MPI O_EDNN O_GA O_ZOO O_GRA O_TRA O_STA O_SAV O_LOA O_WIN O_TES testBest.o
 	$(MPICC) testBest.o TestLab.o Link.o Node.o SynchroModule.o RootModule.o MPIModule.o InputAssembly.o OutputAssembly.o OutputBuffer.o InputBuffer.o GenericBuffer.o MpiGlobals.o ImagePixmap.o Fenetre.o EnvGraph.o Palette.o IndexedObject.o FileObject.o LinkedObject.o Object.o Zoo.o Pacman.o Menagerie.o Animal.o Son.o Image.o ObjetSensitif.o OngoingDistributionGnuplotFile.o DistributionGnuplotFile.o GnuplotFile.o DistributionDataFile.o OngoingDistributionDataFile.o AccuDataFile.o DataFile.o IOFile.o Counter.o Accumulater.o MeanLogDistribution.o MeanDistribution.o Distribution.o LogDistribution.o CumulatedDistribution.o OngoingDistribution.o OngoingMeanDistribution.o OngoingCumulatedDistribution.o OngoingMeanLogDistribution.o Stater.o Tester.o Displayer.o Tracer.o Loader.o Saver.o Grapher.o Handler.o Loadable.o Savable.o Statable.o Displayable.o Tracable.o EvoIndexable.o EvalIndexable.o TopoIndexable.o TestIndexable.o Testable.o Graphable.o ZooDisplayer.o PacmanDisplayer.o TopologyDisplayer.o AssemblyDisplayer.o NeuronDisplayer.o ActivityStater.o InputStater.o NeuronStater.o InhibSynapseStater.o ExcitSynapseStater.o SynapseStater.o ZooStater.o LoopStater.o AssemblyStater.o ClusterStater.o LinkedClusterStater.o NetworkStater.o ActivityTester.o InputTester.o ZooSaver.o ZooLoader.o InputAssemblyStater.o OutputAssemblyStater.o IndividualTracer.o ZooTracer.o SynapseTracer.o NeuronTracer.o AssemblyTracer.o NetworkTracer.o ZooGrapher.o IndividualGrapher.o NetworkGrapher.o AssemblyGrapher.o NeuronGrapher.o SynapseGrapher.o Topology.o LinkedCluster.o ClusterLink.o Cluster.o Projection.o Assembly.o Neuron.o Synapse.o EventManager.o CircledList.o PspEventPackage.o List.o PreConstructedList.o SpikingNeuron.o DynamicSynapse.o NeuronMathTools.o SynapseMathTools.o RandomMathTools.o RandomNumberGenerator.o EDNetwork.o EDExcitProjection.o EDInhibProjection.o EDAssembly.o EDNeuron.o EDInhibSynapse.o EDExcitSynapse.o EDSynapse.o EvoNetwork.o Population.o Individual.o Chromosome.o Gene.o -o TestBestPopulation
-	
+
 cleanAll: clean cleanTmp cleanData cleanChromo
-	
+
 clean:
 	rm -f *.o
-	
+
 cleanTmp:
 	rm -rf *~
 	rm -rf */*~
@@ -82,7 +82,7 @@ cleanData:
 
 cleanChromo:
 	rm -f data/Chromo*.txt
-	
+
 ############################################################ Repertoires des objets ###########################################################
 
 ## Repertoire Algo genetique
@@ -124,7 +124,7 @@ test.o : Define.h DefineMPI.h DefineEDNetwork.h $(MPI)MpiGlobals.h $(GA)EvoNetwo
 
 run.o : Define.h DefineMPI.h DefineEDNetwork.h $(MPI)MpiGlobals.h $(GA)EvoNetwork.h $(ZOO)Zoo.h run.cc
 	$(GCC) run.cc
-	
+
 stat.o : Define.h DefineMPI.h DefineEDNetwork.h $(MPI)MpiGlobals.h $(GA)EvoNetwork.h $(ZOO)Zoo.h stat.cc
 	$(GCC) stat.cc
 
@@ -251,16 +251,16 @@ ZooSaver.o : $(SAV)ZooSaver.cc $(SAV)ZooSaver.h $(ZOO)Zoo.h $(HAN)Saver.h $(FH)I
 
 ZooLoader.o : $(LOA)ZooLoader.cc $(LOA)ZooLoader.h $(ZOO)Zoo.h $(HAN)Loader.h $(FH)IOFile.h DefineGA.h DefineStater.h DefineSaver.h Define.h
 	$(GCC) $(LOA)ZooLoader.cc
-	
-	
+
+
 ################################################################ Testers ####################################################################
 
 InputTester.o : $(TES)InputTester.h $(TES)InputTester.cc $(GA)EvoNetwork.h $(STA)InputStater.h $(HAN)Tester.h DefineEDNetwork.h DefineGrapher.h DefineTracer.h DefineStater.h DefineTester.h DefineZoo.h Define.h
 	$(GCC) $(TES)InputTester.cc
-	
+
 ActivityTester.o : $(TES)ActivityTester.h $(TES)ActivityTester.cc $(GA)EvoNetwork.h $(STA)ActivityStater.h $(HAN)Tester.h DefineEDNetwork.h DefineGrapher.h DefineTracer.h DefineStater.h DefineTester.h DefineZoo.h Define.h
 	$(GCC) $(TES)ActivityTester.cc
-	
+
 ################################################################ Staters ####################################################################
 
 ZooStater.o : $(STA)ZooStater.h $(STA)ZooStater.cc $(HAN)Stater.h $(FH)DistributionGnuplotFile.h $(FH)AccuDataFile.h $(HAN)Accumulater.h $(HAN)Counter.h $(ZOO)Zoo.h $(ZOO)Pacman.h DefineTester.h DefineStater.h DefineZoo.h Define.h
@@ -285,14 +285,14 @@ AssemblyStater.o : $(STA)AssemblyStater.h $(STA)AssemblyStater.cc $(STA)LoopStat
 	$(GCC) $(STA)AssemblyStater.cc
 
 LoopStater.o : $(STA)LoopStater.h $(STA)LoopStater.cc $(HAN)MeanDistribution.h $(HAN)LogDistribution.h $(HAN)Distribution.h $(HAN)Counter.h $(HAN)Accumulater.h $(HAN)Stater.h $(DGR)Node.h $(DGR)Link.h DefineStater.h DefineEDNetwork.h Define.h
-	$(GCC) $(STA)LoopStater.cc 
-	
+	$(GCC) $(STA)LoopStater.cc
+
 ActivityStater.o : $(STA)ActivityStater.h $(STA)ActivityStater.cc $(EDNN)EDNetwork.h $(STA)NeuronStater.h $(HAN)Stater.h DefineEDNetwork.h DefineGrapher.h DefineTracer.h DefineStater.h Define.h
 	$(GCC) $(STA)ActivityStater.cc
 
 InputStater.o : $(STA)InputStater.h $(STA)InputStater.cc $(EDNN)EDNetwork.h $(STA)NeuronStater.h $(HAN)Stater.h DefineEDNetwork.h DefineGrapher.h DefineTracer.h DefineStater.h Define.h
 	$(GCC) $(STA)InputStater.cc
-	
+
 NeuronStater.o:  $(STA)NeuronStater.h $(STA)NeuronStater.cc $(STA)ExcitSynapseStater.h $(STA)InhibSynapseStater.h $(STA)SynapseStater.h $(HAN)Stater.h $(HAN)Accumulater.h $(EDNN)EDNeuron.h DefineTracer.h DefineStater.h DefineEDNetwork.h Define.h
 	$(GCC) $(STA)NeuronStater.cc
 
@@ -387,10 +387,10 @@ Topology.o: $(TOPO)Topology.cc $(TOPO)Topology.h $(TOPO)Assembly.h $(INT)Display
 
 LinkedCluster.o: $(TOPO)LinkedCluster.cc $(TOPO)LinkedCluster.h $(STA)LinkedClusterStater.h $(TOPO)Cluster.h DefineEDNetwork.h Define.h
 	$(GCC) $(TOPO)LinkedCluster.cc
-	
+
 ClusterLink.o: $(TOPO)ClusterLink.cc $(TOPO)ClusterLink.h $(TOPO)LinkedCluster.h $(DGR)Link.h DefineEDNetwork.h Define.h
 	$(GCC) $(TOPO)ClusterLink.cc
-	
+
 Cluster.o: $(TOPO)Cluster.cc $(TOPO)Cluster.h $(STA)ClusterStater.h $(TOPO)Assembly.h $(DGR)Node.h DefineEDNetwork.h Define.h
 	$(GCC) $(TOPO)Cluster.cc
 
@@ -440,7 +440,7 @@ RandomNumberGenerator.o: $(MT)RandomNumberGenerator.cc $(MT)RandomNumberGenerato
 ############################################################ Directed Graph ###############################################################
 Node.o : $(DGR)Node.cc $(DGR)Node.h $(DGR)Link.h $(STA)LoopStater.h
 	$(GCC) $(DGR)Node.cc
-	
+
 Link.o : $(DGR)Link.cc $(DGR)Link.h $(DGR)Node.h
 	$(GCC) $(DGR)Link.cc
 
@@ -467,7 +467,7 @@ DistributionDataFile.o: $(FH)DistributionDataFile.cc $(FH)DistributionDataFile.h
 
 AccuDataFile.o: $(FH)AccuDataFile.cc $(FH)AccuDataFile.h $(FH)AccuDataFile.h $(HAN)Accumulater.h  DefineStater.h Define.h
 	$(GCC) $(FH)AccuDataFile.cc
-	
+
 DataFile.o: $(FH)DataFile.cc $(FH)DataFile.h $(OBJ)FileObject.h
 	$(GCC) $(FH)DataFile.cc
 
@@ -476,7 +476,7 @@ IOFile.o: $(FH)IOFile.cc $(FH)IOFile.h $(OBJ)FileObject.h
 
 ################################################################ Handlers ####################################################################
 
-Tester.o: $(HAN)Tester.h $(HAN)Tester.cc $(HAN)Handler.h $(OBJ)Object.h 
+Tester.o: $(HAN)Tester.h $(HAN)Tester.cc $(HAN)Handler.h $(OBJ)Object.h
 	$(GCC) $(HAN)Tester.cc
 
 Stater.o: $(HAN)Stater.h $(HAN)Stater.cc $(HAN)Handler.h $(OBJ)Object.h DefineStater.h
@@ -500,7 +500,7 @@ Loader.o: $(HAN)Loader.h $(HAN)Loader.cc $(OBJ)Object.h
 OngoingMeanLogDistribution.o :  $(HAN)OngoingMeanLogDistribution.cc $(HAN)OngoingMeanLogDistribution.h $(HAN)OngoingMeanDistribution.h $(HAN)MeanLogDistribution.h $(HAN)LogDistribution.h
 	$(GCC) $(HAN)OngoingMeanLogDistribution.cc
 
-OngoingCumulatedDistribution.o :  $(HAN)OngoingCumulatedDistribution.cc $(HAN)OngoingCumulatedDistribution.h $(HAN)OngoingMeanDistribution.h $(HAN)CumulatedDistribution.h 
+OngoingCumulatedDistribution.o :  $(HAN)OngoingCumulatedDistribution.cc $(HAN)OngoingCumulatedDistribution.h $(HAN)OngoingMeanDistribution.h $(HAN)CumulatedDistribution.h
 	$(GCC) $(HAN)OngoingCumulatedDistribution.cc
 
 OngoingMeanDistribution.o :  $(HAN)OngoingMeanDistribution.cc $(HAN)OngoingMeanDistribution.h $(HAN)MeanDistribution.h $(HAN)OngoingDistribution.h
@@ -512,24 +512,24 @@ OngoingDistribution.o :  $(HAN)OngoingDistribution.cc $(HAN)OngoingDistribution.
 MeanLogDistribution.o :  $(HAN)MeanLogDistribution.cc $(HAN)MeanLogDistribution.h $(HAN)MeanDistribution.h $(HAN)LogDistribution.h $(HAN)Accumulater.h
 	$(GCC) $(HAN)MeanLogDistribution.cc
 
-CumulatedDistribution.o :  $(HAN)CumulatedDistribution.cc $(HAN)CumulatedDistribution.h $(HAN)MeanDistribution.h 
+CumulatedDistribution.o :  $(HAN)CumulatedDistribution.cc $(HAN)CumulatedDistribution.h $(HAN)MeanDistribution.h
 	$(GCC) $(HAN)CumulatedDistribution.cc
-	
+
 MeanDistribution.o :  $(HAN)MeanDistribution.cc $(HAN)MeanDistribution.h $(HAN)Distribution.h $(HAN)Accumulater.h
 	$(GCC) $(HAN)MeanDistribution.cc
-	
+
 Accumulater.o : $(HAN)Accumulater.cc $(HAN)Accumulater.h $(HAN)Counter.h $(OBJ)Object.h
 	$(GCC) $(HAN)Accumulater.cc
 
 LogDistribution.o :  $(HAN)LogDistribution.cc $(HAN)LogDistribution.h $(HAN)Distribution.h
 	$(GCC) $(HAN)LogDistribution.cc
-		
+
 Distribution.o :  $(HAN)Distribution.cc $(HAN)Distribution.h $(HAN)Accumulater.h $(HAN)Counter.h
 	$(GCC) $(HAN)Distribution.cc
-		
+
 Counter.o : $(HAN)Counter.cc $(HAN)Counter.h $(OBJ)Object.h
 	$(GCC) $(HAN)Counter.cc
-	
+
 #Handler.o : $(HAN)Handler.cc $(HAN)Handler.h $(OBJ)Object.h $(INT)EvoIndexable.h $(INT)EvalIndexable.h $(INT)TestIndexable.h $(INT)TopoIndexable.h $(OBJ)IndexedObject.h Define.h
 Handler.o : $(HAN)Handler.cc $(HAN)Handler.h $(OBJ)Object.h $(INT)EvoIndexable.h $(INT)EvalIndexable.h $(INT)TestIndexable.h $(INT)TopoIndexable.h $(OBJ)IndexedObject.h
 	$(GCC) $(HAN)Handler.cc
