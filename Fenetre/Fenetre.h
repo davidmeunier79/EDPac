@@ -11,12 +11,14 @@
 //#include "cursor"
 //#include "cmask"
 
+// NEW
+#define _POSIX_C_SOURCE 200809L
+
 #include <iostream>
 #include <string>
 #include <map>
 // sprinf (NEW)
 #include <cstdio>
-#include "strdup.h"
 
 using namespace std;
 
