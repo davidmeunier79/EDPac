@@ -9,6 +9,10 @@
 //#include <string>
 //#include <fstream>
 #include <iostream>
+
+// RAND_MAX (new)
+#include <cstdlib>
+
 using namespace std;
 
 // Local Includes
@@ -24,7 +28,7 @@ class Accumulater: public Counter
 {
 	double best;
 	double lowest;
-	
+
 	double accu;
 	double accuSquare;
 public:
@@ -32,23 +36,23 @@ public:
 	virtual ~Accumulater();
 
 	void accumulate(double value);
-	
+
 	double getAccu();
 	double getBest();
 	double getLowest();
-	
+
 	void initAccu();
-	
+
 	double getMean();
 	double getLogMean();
-	
+
 	double getMeanSquare();
-	
+
 	double getStd();
-	
-	double getStdMin();	
+
+	double getStdMin();
 	double getStdMax();
-	
+
 	friend ostream& operator<<(ostream& o, Accumulater* co);
 	friend istream& operator>>(istream& i, Accumulater* co);
 };
