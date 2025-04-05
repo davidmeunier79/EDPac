@@ -3,7 +3,7 @@ DEBUGGER=0
 ifeq ($(DEBUGGER),1)
 	GCC = g++ -g -c
 else
-	GCC = g++ -c -lX11 -std=gnu11
+	GCC = g++ -c -lX11
 endif
 
 LD = g++  -lX11

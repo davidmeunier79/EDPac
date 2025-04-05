@@ -16,7 +16,7 @@
 #include <map>
 // sprinf (NEW)
 #include <cstdio>
-#include "strdub.h"
+#include "strdup.h"
 
 using namespace std;
 
