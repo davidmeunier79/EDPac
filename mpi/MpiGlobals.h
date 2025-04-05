@@ -4,9 +4,9 @@
 #define _MPI_GLOBALS_H
 
 // NEW
-#include <mpi++.h>
+//#include <mpi++.h>
 // Special lam 7.0
-//#include <mpi.h>
+#include <mpi.h>
 #include <iostream>
 #include <string>
 using namespace std;
