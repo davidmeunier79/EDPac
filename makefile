@@ -4,7 +4,6 @@ ifeq ($(DEBUGGER),1)
 	GCC = g++ -g -c
 else
 	GCC = g++ -c -lX11
-	#GCC = g++ -c -lX11 -std=gnu++0x
 LD = g++  -lX11
 
 MPICC = mpic++ -lm -L/usr/X11R6/lib -lX11 -lXpm
