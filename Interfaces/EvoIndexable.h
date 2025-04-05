@@ -25,12 +25,12 @@ public:
 
 	static void incrementEvoIndex();
 	static void decrementEvoIndex();
-	
+
 	static void initEvoIndex();
 
 	static int getEvoIndex();
-	
-	friend istream& operator>>(istream& i, EvoIndexable* i);
+
+	friend istream& operator>>(istream& i, EvoIndexable* evo);
 };
 
 #endif
