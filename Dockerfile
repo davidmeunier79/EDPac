@@ -31,6 +31,8 @@ RUN apt-get install -y mpich
 
 RUN apt-get install -y libx11-dev libxpm-dev libxft-dev libxext-dev mesa-common-dev
 
+RUN apt-get install -y libopenmpi-dev lam4-dev
+
 ############################################# install macapype from github
 RUN mkdir -p /opt/packages/
 
