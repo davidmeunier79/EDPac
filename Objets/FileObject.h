@@ -8,6 +8,8 @@
 #include <unistd.h>
 // Pour mkdir
 #include <sys/stat.h>
+// pour system (NEW)
+#include <cstdlib>
 
 // STL Includes
 #include <string>
@@ -34,20 +36,20 @@ public:
 	// Ouverture/fermeture
 	void openIFile();
 	void openIFile(string newFileName);
-	
+
 	void openOFile();
 	void openOFile(string newFileName);
-	
+
 	void closeFile();
-	
+
 	bool isOpen();
 
 	// Methode get/set
 	void setFileName(string string);
-	
+
 	string getFileName();
 	fstream& getFile();
-	
+
 	// Respectivement entrée et entrée+nettoyage du répertoire /data
 	static void initDataFiles();
 	static void deleteDataFiles();
