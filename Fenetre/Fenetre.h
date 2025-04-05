@@ -14,7 +14,8 @@
 #include <iostream>
 #include <string>
 #include <map>
-//#include <cstdio>
+// sprinf (NEW)
+#include <cstdio>
 using namespace std;
 
 // Local Includes
@@ -40,7 +41,7 @@ private :
   map<KeySym,void (*)()> reflexes;
   // ensemble d'images directement affichables
   map<string,ImagePixmap*> images;
-  
+
 public :
   // constructeur et destructeur
   Fenetre();
@@ -53,7 +54,7 @@ public :
   void setTitre(const string & titre2);
   string getIconeTitre(void);
   void setIconeTitre(const string & iconTitre2);
-  void getPosition(int &x, int &y); 
+  void getPosition(int &x, int &y);
   void setPosition(int x, int y);
   void getDimensions(int &l, int &h);
   void setDimensions(int l, int h);
@@ -68,15 +69,15 @@ public :
   void initImage(const string & fichier,const string &couleur);
   void placeImage(const string & etiquette, int x, int y);
   void saveXpmImage(string fileName);
-  
+
   // methodes de dessin et d'affichage dans la fenetre
   void affiche(void);
   void redessine(void);
   void afficheTexte(const string & txt, int x, int y,const string & couleur="noir");
   void traceLigne(int x1,int y1,int x2,int y2,const string & couleur="noir");
   void colorierZone(int x,int y,unsigned int l,unsigned int h,const string & couleur="noir");
-  
-  
+
+
   void effacer(void);
   void ferme(void);
 };
