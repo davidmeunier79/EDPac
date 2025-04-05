@@ -6,6 +6,9 @@
 // STL includes
 #include <iostream>
 
+// pour system (NEW)
+#include <cstdlib>
+
 // Local Includes
 #include "../Define.h"
 #include "../DefineZoo.h"
@@ -80,7 +83,7 @@ public :
 
 	// Test une fois l'évolution effectuée de la structure topologique pour toutes les générations
 	void statEvo();
-	
+
 #ifdef _RUN_MODE
 
 	// la fonction d'initialisation
@@ -100,10 +103,10 @@ public :
 	// methodes principales
 	void evaluatePopulation();
 	void runEvo();
-	
+
 	#ifdef _CLUSTER_EVO_MODE
 	virtual void clusterizeChromos();
-	#endif	
+	#endif
 
 #endif
 	// Special test.cc
@@ -120,7 +123,7 @@ public :
 #endif
 
 	void testBestPopulation();
-	
+
 #ifdef _TEST_BEST_POPULATION_MODE
 	void testBestChromos();
 #endif
