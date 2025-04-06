@@ -236,7 +236,7 @@ GenericBuffer.o: $(MPI)GenericBuffer.cc $(MPI)GenericBuffer.h DefineMPI.h Define
 	$(GCC) $(MPI)GenericBuffer.cc
 
 MpiGlobals.o: $(MPI)MpiGlobals.cc $(MPI)MpiGlobals.h DefineMPI.h Define.h
-	mpic++ -nostartfiles $(MPI)MpiGlobals.cc
+	gcc -I/usr/lib/openmpi/include -I/usr/lib/openmpi/include/openmpi -pthread -L/usr//lib -L/usr/lib/openmpi/lib -lmpi -nostartfiles $(MPI)MpiGlobals.cc
 
 ############################################################################################################################################
 ################################################### BAM Bimodale Evenementielle ############################################################
