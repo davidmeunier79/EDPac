@@ -43,10 +43,12 @@ RUN git clone https://github.com/davidmeunier79/EDPac.git
 WORKDIR /opt/packages/EDPac
 
 
+
 ######################## Testing
 
+RUN mpicc -show
 
-RUN ls -l
+#RUN ls -l
 
 RUN make runEvo
 
